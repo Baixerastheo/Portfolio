@@ -1,0 +1,339 @@
+<script setup>
+// Section hero personnalisable
+const heroData = {
+  name: "Baixeras Théo",
+  title: "Développeur Front-End",
+  subtitle: "Spécialisé en Vue.js, Nuxt.js et CSS moderne",
+  description: "Passionné par la création d'expériences web innovantes et performantes. Je transforme vos idées en applications web élégantes et fonctionnelles.",
+  ctaText: "Découvrir mes projets",
+  ctaLink: "/projects",
+  image: "/hero-image.jpg" // Vous pouvez remplacer par votre photo
+}
+</script>
+
+<template>
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-name">{{ heroData.name }}</h1>
+          <h2 class="hero-title">{{ heroData.title }}</h2>
+          <p class="hero-subtitle">{{ heroData.subtitle }}</p>
+          <p class="hero-description">{{ heroData.description }}</p>
+          
+          <div class="hero-actions">
+            <a :href="heroData.ctaLink" class="hero-cta">
+              {{ heroData.ctaText }}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/about" class="hero-secondary">
+              En savoir plus
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <div class="image-placeholder">
+            <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <p>Votre photo ici</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Éléments décoratifs -->
+      <div class="hero-decoration">
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        <div class="decoration-circle circle-3"></div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text {
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-white);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-color);
+  color: var(--background-color);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  border: 1px solid transparent;
+}
+
+.hero-cta:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-white);
+  padding: 1rem 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  background: var(--surface-color);
+  backdrop-filter: blur(10px);
+}
+
+.hero-secondary:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInRight 1s ease-out;
+}
+
+.image-placeholder {
+  width: 300px;
+  height: 300px;
+  border-radius: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.image-placeholder:hover {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.image-placeholder svg {
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.image-placeholder p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Éléments décoratifs */
+.hero-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 220, 130, 0.05), rgba(0, 196, 113, 0.02));
+  border: 1px solid rgba(0, 220, 130, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.circle-3 {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 10%;
+  animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-name {
+    font-size: 2.5rem;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .image-placeholder {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .circle-1, .circle-2, .circle-3 {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding: 0 1rem;
+  }
+  
+  .hero-name {
+    font-size: 2rem;
+  }
+  
+  .hero-cta, .hero-secondary {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .image-placeholder {
+    width: 200px;
+    height: 200px;
+  }
+}
+</style>

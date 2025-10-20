@@ -15,10 +15,24 @@ export default defineComponent({
   <div>
     <Header />
 
-    <main>
+    <main class="main-content">
       <slot></slot>
     </main>
 
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.main-content {
+  padding-top: 20px;
+  min-height: calc(100vh - 20px);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 15px;
+    min-height: calc(100vh - 15px);
+  }
+}
+</style>
