@@ -1,6 +1,6 @@
 <script setup>
 import styled from 'vue3-styled-components'
-import { NuxtLink } from '#components'
+import {NuxtLink} from '#components'
 
 const HeaderWrapper = styled.header`
   background-color: #ffffff0d;
@@ -10,6 +10,8 @@ const HeaderWrapper = styled.header`
 const Nav = styled.nav`
   display: flex;
   gap: 1rem;
+  justify-content: right;
+  align-items: center;
 `
 
 const NavLink = styled(NuxtLink)`
@@ -22,14 +24,18 @@ const NavLink = styled(NuxtLink)`
     color: #4CAF50;
   }
 `
+const title = styled(NavLink)`
+  color: #4CAF50;
+  `
 </script>
 
 <template>
-    <HeaderWrapper>
-        <Nav>
-            <NavLink to="/">Accueil</NavLink>
-            <NavLink to="/about">À propos</NavLink>
-            <NavLink to="/projects">Projets</NavLink>
-        </Nav>
-    </HeaderWrapper>
+  <HeaderWrapper>
+    <Nav>
+      <NavLink to="/"><p class="title">Baixeras Théo</p></NavLink>
+      <NavLink to="/">Accueil</NavLink>
+      <NavLink to="/about">À propos</NavLink>
+      <NavLink to="/projects">Projets</NavLink>
+    </Nav>
+  </HeaderWrapper>
 </template>
