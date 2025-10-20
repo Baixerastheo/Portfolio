@@ -180,3 +180,5 @@ const closeMobileMenu = () => {
     </div>
   </header>
 </template>
+
+<style src="~/assets/styles/header.css"></style>

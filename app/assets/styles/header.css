@@ -1,42 +1,4 @@
-/* Variables CSS inspirées de Nuxt.com */
-:root {
-  --primary-color: #00DC82;
-  --primary-hover: #00C471;
-  --secondary-color: #64748b;
-  --background-color: #020420;
-  --surface-color: #0f172a;
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-bg-mobile: #0f172a;
-  --text-white: #ffffff;
-  --text-muted: #94a3b8;
-  --border-color: rgba(148, 163, 184, 0.1);
-  --border-hover: rgba(0, 220, 130, 0.2);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-/* Reset et base */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  background-color: var(--background-color);
-  color: var(--text-white);
-  font-family: var(--font-family);
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  font-variation-settings: normal;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/* Header Styles */
+/* Styles pour le composant Header */
 .header {
   position: fixed;
   top: 0;
@@ -341,7 +303,7 @@ body {
   padding: 1.5rem;
   overflow-y: auto;
   background: transparent;
-  height: calc(100vh - 80px); /* Hauteur fixe pour le contenu */
+  height: calc(100vh - 80px);
   max-height: calc(100vh - 80px);
 }
 
@@ -396,33 +358,7 @@ body {
   color: inherit;
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  font-size: 0.875rem;
-  padding: 1rem;
-  color: var(--secondary-color);
-}
-
-/* Page Content */
-.page-container {
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.page-title {
-  font-size: 3rem;
-  color: var(--primary-color);
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.page-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-white);
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
   .header {
     padding: 1rem 1.5rem;
@@ -447,88 +383,5 @@ body {
   
   .hamburger-button {
     display: flex;
-  }
-}
-
-/* Animations */
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Styles pour les nouveaux composants */
-.hero-section,
-.projects-carousel {
-  position: relative;
-  z-index: 1;
-}
-
-/* Amélioration des transitions globales */
-* {
-  scroll-behavior: smooth;
-}
-
-/* Styles pour les liens */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Amélioration de l'accessibilité */
-button:focus,
-a:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* Styles pour les images responsives */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Amélioration du contraste pour l'accessibilité */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }

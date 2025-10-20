@@ -1,5 +1,5 @@
 <script setup>
-import '~/assets/styles/styles.globale.css'
+// Les styles CSS sont maintenant importés via nuxt.config.ts
 </script>
 
 <template>

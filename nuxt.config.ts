@@ -4,7 +4,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   
   // Configuration CSS
-  css: ['~/assets/styles/styles.globale.css'],
+  css: [
+    '~/assets/styles/global.css',
+    '~/assets/styles/header.css',
+    '~/assets/styles/hero.css',
+    '~/assets/styles/carousel.css',
+    '~/assets/styles/footer.css'
+  ],
   
   // Configuration pour le développement
   devServer: {
