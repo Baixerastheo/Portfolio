@@ -1,2 +1,18 @@
-User-Agent: *
-Disallow:
+# robots.txt pour https://baixeras-theo.dev
+
+# Autorisation de tous les robots pour toutes les pages
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://baixeras-theo.dev/sitemap.xml
+
+# Désactiver le crawling des fichiers et dossiers spécifiques
+User-agent: Googlebot
+Disallow: /api/
+Disallow: /.nuxt/
+Disallow: /node_modules/
+
+# Crawl-delay pour éviter la surcharge du serveur
+User-agent: *
+Crawl-delay: 1

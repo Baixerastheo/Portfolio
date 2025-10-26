@@ -1,14 +1,5 @@
 <script setup>
-// Section hero personnalisable
-const heroData = {
-  name: "Baixeras Théo",
-  title: "Développeur Junior",
-  subtitle: "Spécialisé en Développement Web",
-  description: "Passionné par la création d'expériences web innovantes et performantes. Je transforme vos idées en applications web élégantes et fonctionnelles.",
-  ctaText: "Découvrir mes projets",
-  ctaLink: "/projects",
-  image: "/pf_img.png"
-}
+import { heroData } from '~/data/hero'
 </script>
 
 <template>

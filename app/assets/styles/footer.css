@@ -7,6 +7,7 @@
   overflow: hidden;
   box-shadow: 0 0 30px rgba(0, 220, 130, 0.05),
               0 0 60px rgba(0, 220, 130, 0.02);
+  margin-top: 0;
 }
 
 .footer::before {
@@ -51,6 +52,10 @@
 
 .footer-logo svg {
   color: var(--background-color);
+}
+
+.footer-logo span {
+  display: flex;
 }
 
 .footer-brand-text {
@@ -146,10 +151,16 @@
 
 .footer-contact-item:hover {
   color: var(--primary-color);
+  transform: translateX(2px);
 }
 
 .footer-contact-item svg {
   flex-shrink: 0;
+}
+
+.footer-contact-item span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer-social {
@@ -204,12 +215,19 @@
   box-shadow: var(--shadow-md);
 }
 
-.footer-social-link svg {
+.footer-social-link svg,
+.footer-social-link span {
   transition: var(--transition);
 }
 
 .footer-social-link:hover svg {
   transform: scale(1.1);
+}
+
+.footer-social-link span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-bottom {

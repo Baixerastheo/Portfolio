@@ -1,110 +1,20 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { carouselProjects } from '~/data/carousel-projects'
+import { useCarousel } from '~/composables/useCarousel'
 
-// Données des projets - vous pouvez facilement les modifier
-const projects = ref([
-  {
-    id: 1,
-    title: "E-commerce Vue.js",
-    description: "Application e-commerce moderne avec Vue.js et Nuxt.js",
-    image: "/project1.jpg",
-    technologies: ["Vue.js", "Nuxt.js", "CSS3", "JavaScript"],
-    link: "#",
-    github: "#"
-  },
-  {
-    id: 2,
-    title: "Dashboard Analytics",
-    description: "Tableau de bord interactif avec graphiques en temps réel",
-    image: "/project2.jpg",
-    technologies: ["Vue.js", "Chart.js", "SCSS", "API REST"],
-    link: "#",
-    github: "#"
-  },
-  {
-    id: 3,
-    title: "Portfolio Responsive",
-    description: "Site portfolio responsive avec animations CSS",
-    image: "/portfolio-resp.png",
-    technologies: ["Vue.Js", "Nuxt", "Typescript", "Javascript", "CSS3"],
-    link: "#",
-    github: "#"
-  },
-  {
-    id: 4,
-    title: "App Mobile PWA",
-    description: "Application mobile progressive avec Vue.js",
-    image: "/project4.jpg",
-    technologies: ["Vue.js", "PWA", "Service Workers", "CSS Grid"],
-    link: "#",
-    github: "#"
-  }
-])
+const projects = ref(carouselProjects)
 
-const currentIndex = ref(0)
-const isAutoPlay = ref(true)
-const autoPlayInterval = ref(null)
-
-// Fonction pour passer au projet suivant
-const nextProject = () => {
-  currentIndex.value = (currentIndex.value + 1) % projects.value.length
-}
-
-// Fonction pour passer au projet précédent
-const prevProject = () => {
-  currentIndex.value = currentIndex.value === 0 ? projects.value.length - 1 : currentIndex.value - 1
-}
-
-// Fonction pour aller à un projet spécifique
-const goToProject = (index) => {
-  currentIndex.value = index
-}
-
-// Fonction pour démarrer/arrêter l'autoplay
-const toggleAutoPlay = () => {
-  isAutoPlay.value = !isAutoPlay.value
-  if (isAutoPlay.value) {
-    startAutoPlay()
-  } else {
-    stopAutoPlay()
-  }
-}
-
-// Démarrer l'autoplay
-const startAutoPlay = () => {
-  stopAutoPlay()
-  autoPlayInterval.value = setInterval(nextProject, 3000) // Change toutes les 3 secondes
-}
-
-// Arrêter l'autoplay
-const stopAutoPlay = () => {
-  if (autoPlayInterval.value) {
-    clearInterval(autoPlayInterval.value)
-    autoPlayInterval.value = null
-  }
-}
-
-// Gestionnaires d'événements
-const handleMouseEnter = () => {
-  stopAutoPlay()
-}
-
-const handleMouseLeave = () => {
-  if (isAutoPlay.value) {
-    startAutoPlay()
-  }
-}
-
-// Lifecycle hooks
-onMounted(() => {
-  if (isAutoPlay.value) {
-    startAutoPlay()
-  }
-})
-
-onUnmounted(() => {
-  stopAutoPlay()
-})
+const {
+  currentIndex,
+  isAutoPlay,
+  nextProject,
+  prevProject,
+  goToProject,
+  toggleAutoPlay,
+  handleMouseEnter,
+  handleMouseLeave
+} = useCarousel(projects.value, 3000)
 </script>
 
 <template>

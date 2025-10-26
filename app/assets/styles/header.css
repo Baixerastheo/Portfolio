@@ -56,6 +56,10 @@
   transition: var(--transition);
 }
 
+.header-logo span {
+  display: flex;
+}
+
 .header-title:hover .header-logo {
   transform: scale(1.1) rotate(5deg);
   box-shadow: var(--shadow-md);
@@ -92,12 +96,18 @@
   transform: translateY(-1px);
 }
 
-.header-nav-link svg {
+.header-nav-link svg,
+.header-nav-link span {
   transition: var(--transition);
 }
 
 .header-nav-link:hover svg {
   transform: scale(1.1);
+}
+
+.header-nav-link span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .header-nav-link::after {
@@ -161,12 +171,19 @@
   box-shadow: var(--shadow-md);
 }
 
-.header-action-btn svg {
+.header-action-btn svg,
+.header-action-btn span {
   transition: var(--transition);
 }
 
 .header-action-btn:hover svg {
   transform: scale(1.1);
+}
+
+.header-action-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hamburger Button */
@@ -274,6 +291,10 @@
 
 .portfolio-icon svg {
   color: var(--primary-color);
+}
+
+.portfolio-icon span {
+  display: flex;
 }
 
 .mobile-menu-close {

@@ -2,17 +2,21 @@
 import { defineComponent } from 'vue'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
+import Loading from '~/components/Loading.vue'
 
 export default defineComponent({
   components: {
     Header,
-    Footer
+    Footer,
+    Loading
   }
 })
 </script>
 
 <template>
   <div>
+    <Loading />
+
     <Header />
 
     <main class="main-content">

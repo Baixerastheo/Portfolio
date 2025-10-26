@@ -1,0 +1,125 @@
+/* Projects Page Layout */
+.projects-page {
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Page Header */
+.page-header {
+  padding: 6rem 0 3rem;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, var(--background-color), rgba(0, 0, 0, 0.5));
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  border-radius: 2px;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), rgba(0, 220, 130, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.page-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.intro-text {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  line-height: 1.7;
+}
+
+/* Conclusion Section */
+.conclusion-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.conclusion-card {
+  background: linear-gradient(135deg, var(--surface-color), rgba(0, 0, 0, 0.3));
+  border: 2px solid rgba(0, 220, 130, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  backdrop-filter: blur(20px);
+  transition: var(--transition);
+}
+
+.conclusion-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 60px rgba(0, 220, 130, 0.2);
+  transform: translateY(-4px);
+}
+
+.conclusion-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), rgba(0, 220, 130, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.25rem;
+}
+
+.conclusion-text {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .conclusion-card {
+    padding: 3rem 2rem;
+  }
+
+  .conclusion-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .page-header {
+    padding: 3rem 0 2rem;
+  }
+}
+
