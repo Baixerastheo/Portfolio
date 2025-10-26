@@ -7,7 +7,7 @@ const heroData = {
   description: "Passionné par la création d'expériences web innovantes et performantes. Je transforme vos idées en applications web élégantes et fonctionnelles.",
   ctaText: "Découvrir mes projets",
   ctaLink: "/projects",
-  image: "/hero-image.jpg"
+  image: "/pf_img.png"
 }
 </script>
 
@@ -36,13 +36,7 @@ const heroData = {
         </div>
         
         <div class="hero-image">
-          <div class="image-placeholder">
-            <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <p></p>
-          </div>
+          <img :src="heroData.image" alt="Photo de profil" />
         </div>
       </div>
 

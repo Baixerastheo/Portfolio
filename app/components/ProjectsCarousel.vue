@@ -25,8 +25,8 @@ const projects = ref([
     id: 3,
     title: "Portfolio Responsive",
     description: "Site portfolio responsive avec animations CSS",
-    image: "/project3.jpg",
-    technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
+    image: "/portfolio-resp.png",
+    technologies: ["Vue.Js", "Nuxt", "Typescript", "Javascript", "CSS3"],
     link: "#",
     github: "#"
   },
@@ -153,14 +153,7 @@ onUnmounted(() => {
               class="project-card"
             >
               <div class="project-image">
-                <div class="image-placeholder">
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                    <circle cx="9" cy="9" r="2"/>
-                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                  </svg>
-                  <p>{{ project.title }}</p>
-                </div>
+                <img :src="project.image" :alt="project.title" />
               </div>
               
               <div class="project-content">
