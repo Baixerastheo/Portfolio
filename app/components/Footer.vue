@@ -2,15 +2,15 @@
 // Données du footer - facilement personnalisables
 const footerData = {
   name: "Baixeras Théo",
-  title: "Développeur Front-End",
-  description: "Passionné par la création d'expériences web innovantes et performantes.",
+  title: "Développeur Junior",
+  description: "Passionné par la programmation d'expériences Web et Applications.",
   email: "contact@example.com",
-  phone: "+33 6 12 34 56 78",
+  phone: "+33 6 00 00 00 00",
   location: "France",
   socialLinks: [
     {
       name: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Baixerastheo",
       icon: "github"
     },
     {

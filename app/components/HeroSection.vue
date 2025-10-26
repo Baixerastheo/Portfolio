@@ -2,12 +2,12 @@
 // Section hero personnalisable
 const heroData = {
   name: "Baixeras Théo",
-  title: "Développeur Front-End",
-  subtitle: "Spécialisé en Vue.js, Nuxt.js et CSS moderne",
+  title: "Développeur Junior",
+  subtitle: "Spécialisé en Développement Web",
   description: "Passionné par la création d'expériences web innovantes et performantes. Je transforme vos idées en applications web élégantes et fonctionnelles.",
   ctaText: "Découvrir mes projets",
   ctaLink: "/projects",
-  image: "/hero-image.jpg" // Vous pouvez remplacer par votre photo
+  image: "/hero-image.jpg"
 }
 </script>
 
@@ -41,12 +41,11 @@ const heroData = {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
-            <p>Votre photo ici</p>
+            <p></p>
           </div>
         </div>
       </div>
-      
-      <!-- Éléments décoratifs -->
+
       <div class="hero-decoration">
         <div class="decoration-circle circle-1"></div>
         <div class="decoration-circle circle-2"></div>
