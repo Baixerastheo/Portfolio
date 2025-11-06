@@ -20,6 +20,7 @@ export function useCarousel(items: any[], autoPlayInterval: number = 3000) {
     currentIndex.value = index
   }
 
+
   // Démarrer l'autoplay
   const startAutoPlay = () => {
     stopAutoPlay()
@@ -55,7 +56,6 @@ export function useCarousel(items: any[], autoPlayInterval: number = 3000) {
     }
   }
 
-  // Lifecycle hooks
   onMounted(() => {
     if (isAutoPlay.value) {
       startAutoPlay()

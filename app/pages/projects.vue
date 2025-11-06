@@ -20,17 +20,13 @@ useSeo({
           Mes réalisations et l'évolution de mes compétences en développement
         </p>
         <p class="intro-text">
-          En tant que développeur junior, chaque projet représente une opportunité d'apprendre et de progresser. 
+          En tant que développeur junior, chaque projet représente une opportunité d'apprendre et de progresser.
           Voici mes réalisations et ce que je retire de chacune.
         </p>
       </div>
     </section>
 
-    <!-- Tableau des Technologies -->
-    <TechnologiesSection />
 
-    <!-- Section Evolution -->
-    <EvolutionSection />
 
     <!-- Projets -->
     <ProjectsSection />

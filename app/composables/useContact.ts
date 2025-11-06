@@ -9,16 +9,16 @@ export function useContact() {
   const sendEmail = async (data: ContactFormData): Promise<{ success: boolean; message: string }> => {
     try {
       // Configuration EmailJS
-      const serviceId = 'YOUR_SERVICE_ID' // À remplacer
-      const templateId = 'YOUR_TEMPLATE_ID' // À remplacer
-      const publicKey = 'YOUR_PUBLIC_KEY' // À remplacer
+      const serviceId = 'YOUR_SERVICE_ID'
+      const templateId = 'YOUR_TEMPLATE_ID'
+      const publicKey = 'YOUR_PUBLIC_KEY'
 
       const templateParams = {
         from_name: data.name,
         from_email: data.email,
         subject: data.subject,
         message: data.message,
-        to_email: 'votre-email@example.com' // Votre email de réception
+        to_email: 'votre-email@example.com'
       }
 
       // Envoi via EmailJS
@@ -37,13 +37,13 @@ export function useContact() {
 
       return {
         success: true,
-        message: 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.'
+        message: 'Message envoyé avec succès !'
       }
     } catch (error) {
       console.error('Erreur envoi email:', error)
       return {
         success: false,
-        message: 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou me contacter directement par email.'
+        message: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.'
       }
     }
   }

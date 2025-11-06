@@ -13,13 +13,13 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "E-commerce Vue.js",
-    description: "Application e-commerce complète avec gestion de panier et système de paiement.",
+    title: "A completer",
+    description: "Une descritpion longue du projet qui explique les objectifs et les défis rencontrés.",
     image: null,
     technologies: ["Vue.js", "Nuxt.js", "TypeScript", "Node.js"],
     category: "Full Stack",
     status: "En cours",
-    whatILearned: "Ce projet m'a permis de maîtriser la gestion d'état avec Vue 3, la création d'APIs REST, et la gestion de bases de données. J'ai appris à structurer un projet full-stack et à gérer l'authentification utilisateur.",
+    whatILearned: "",
     skillsGained: ["Architecture full-stack", "Gestion d'état", "API REST"],
   },
   {
@@ -46,13 +46,13 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Application Desktop Qt",
-    description: "Application desktop native avec Qt et C++.",
+    title: "Calculatrice graphique Qt",
+    description: "Une calculatrice graphique, avec une interface réalisée avec Qt et un côté programmation en C++.",
     image: null,
     technologies: ["Qt", "C++", ".NET"],
     category: "Desktop",
     status: "En cours",
-    whatILearned: "J'ai appris le développement d'applications desktop natives avec Qt, la gestion de l'interface utilisateur et les interactions système.",
+    whatILearned: "J'ai appris le développement d'interface graphique avec Qt et les bases du langage C++.",
     skillsGained: ["Desktop apps", "Qt", "Native development"],
   }
 ]
