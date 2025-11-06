@@ -5,7 +5,6 @@ import { useIcons } from '~/composables/useIcons'
 export function useHeader() {
   const { getNavIcon, getActionIcon, getLogoIcon, getCloseIcon } = useIcons()
 
-  // État du menu mobile
   const isMobileMenuOpen = ref(false)
 
   const toggleMobileMenu = () => {

@@ -252,6 +252,8 @@ const handleSubmit = async () => {
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .contact-header {

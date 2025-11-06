@@ -1,9 +1,10 @@
-<script setup>
+  <script setup>
 import { ref, computed } from 'vue'
 import { technologies, techTabs } from '~/data/technologies'
 import { getTechIcon, getTabIcon } from '~/utils/helpers'
 
 const activeTechTab = ref('Frontend')
+const expandedTechs = ref(new Set())
 
 const technologiesByCategory = computed(() => ({
   Frontend: technologies.filter(t => t.category === 'Frontend'),
@@ -11,13 +12,27 @@ const technologiesByCategory = computed(() => ({
   Desktop: technologies.filter(t => t.category === 'Desktop'),
   Tools: technologies.filter(t => t.category === 'Tools')
 }))
+
+const toggleTech = (tech) => {
+  if (tech.githubLink || tech.description) {
+    if (expandedTechs.value.has(tech.name)) {
+      expandedTechs.value.delete(tech.name)
+    } else {
+      expandedTechs.value.add(tech.name)
+    }
+  }
+}
+
+const isExpanded = (tech) => {
+  return expandedTechs.value.has(tech.name)
+}
 </script>
 
 <template>
   <section class="tech-table-section">
     <div class="container">
       <h2 class="section-title">Mes Technologies</h2>
-      <p class="section-subtitle">Stack technique que je maîtrise</p>
+      <p class="section-subtitle">Stack technique que j'ai pu pratiquer et que je maîtrise</p>
 
       <div class="tech-tabs-container">
         <div class="tech-tabs">
@@ -38,19 +53,154 @@ const technologiesByCategory = computed(() => ({
             <div 
               v-for="tech in technologiesByCategory[activeTechTab]" 
               :key="tech.name"
-              class="tech-item"
+              class="tech-item-wrapper"
+              :class="{ 'expanded': isExpanded(tech) && (tech.githubLink || tech.description) }"
             >
-              <div class="tech-info">
-                <div class="tech-icon" v-html="getTechIcon(tech.name)"></div>
-                <span class="tech-name">{{ tech.name }}</span>
+              <div 
+                class="tech-item"
+                :class="{ 'clickable': tech.githubLink || tech.description }"
+                @click="toggleTech(tech)"
+              >
+                <div class="tech-info">
+                  <div class="tech-icon" v-html="getTechIcon(tech.name)"></div>
+                  <span class="tech-name">{{ tech.name }}</span>
+                  <svg 
+                    v-if="tech.githubLink || tech.description"
+                    class="tech-expand-icon"
+                    :class="{ 'expanded': isExpanded(tech) }"
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+                <div class="tech-progress-container">
+                  <div class="tech-progress-bar">
+                    <div 
+                      class="tech-progress-fill" 
+                      :class="{ 'mastered': tech.mastered, 'in-progress': !tech.mastered }"
+                      :style="{ width: `${tech.level}%` }"
+                    ></div>
+                  </div>
+                  <span class="tech-progress-percentage">{{ tech.level }}%</span>
+                </div>
               </div>
-              <div class="tech-badge-container">
-                <span 
-                  class="tech-status-badge" 
-                  :class="{ 'mastered': tech.mastered, 'in-progress': !tech.mastered }"
+              
+              <!-- Zone déroulée -->
+              <div 
+                v-if="tech.githubLink || tech.description"
+                class="tech-expanded-content"
+                :class="{ 'expanded': isExpanded(tech) }"
+              >
+                <div class="tech-expanded-inner">
+                  <p v-if="tech.description" class="tech-description">{{ tech.description }}</p>
+                  <a 
+                    v-if="tech.githubLink"
+                    :href="tech.githubLink" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="tech-github-link"
+                    @click.stop
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>
+                    Voir sur GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Version mobile avec scroll vertical -->
+      <div class="tech-content-mobile">
+        <div class="tech-scroll-container">
+          <div 
+            v-for="category in techTabs" 
+            :key="category"
+            class="tech-category-section"
+          >
+            <div class="tech-category-header">
+              <span class="category-icon" v-html="getTabIcon(category)"></span>
+              <h3 class="category-title">{{ category }}</h3>
+              <span class="category-count">{{ technologiesByCategory[category].length }}</span>
+            </div>
+            <div class="tech-category-items">
+              <div 
+                v-for="tech in technologiesByCategory[category]" 
+                :key="`${tech.category}-${tech.name}`"
+                class="tech-item-mobile-wrapper"
+                :class="{ 'expanded': isExpanded(tech) && (tech.githubLink || tech.description) }"
+              >
+                <div 
+                  class="tech-item-mobile"
+                  :class="{ 'clickable': tech.githubLink || tech.description }"
+                  @click="toggleTech(tech)"
                 >
-                  {{ tech.mastered ? 'Maîtrisé' : 'En cours' }}
-                </span>
+                  <div class="tech-info-mobile">
+                    <div class="tech-icon-mobile" v-html="getTechIcon(tech.name)"></div>
+                    <span class="tech-name-mobile">{{ tech.name }}</span>
+                    <svg 
+                      v-if="tech.githubLink || tech.description"
+                      class="tech-expand-icon-mobile"
+                      :class="{ 'expanded': isExpanded(tech) }"
+                      width="20" 
+                      height="20" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      stroke-width="2" 
+                      stroke-linecap="round" 
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                  </div>
+                  <div class="tech-progress-container-mobile">
+                    <div class="tech-progress-bar-mobile">
+                      <div 
+                        class="tech-progress-fill-mobile" 
+                        :class="{ 'mastered': tech.mastered, 'in-progress': !tech.mastered }"
+                        :style="{ width: `${tech.level}%` }"
+                      ></div>
+                    </div>
+                    <span class="tech-progress-percentage-mobile">{{ tech.level }}%</span>
+                  </div>
+                </div>
+                
+                <!-- Zone déroulée mobile -->
+                <div 
+                  v-if="tech.githubLink || tech.description"
+                  class="tech-expanded-content-mobile"
+                  :class="{ 'expanded': isExpanded(tech) }"
+                >
+                  <div class="tech-expanded-inner-mobile">
+                    <p v-if="tech.description" class="tech-description-mobile">{{ tech.description }}</p>
+                    <a 
+                      v-if="tech.githubLink"
+                      :href="tech.githubLink" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="tech-github-link-mobile"
+                      @click.stop
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/>
+                      </svg>
+                      Voir sur GitHub
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -62,7 +212,7 @@ const technologiesByCategory = computed(() => ({
 
 <style>
 .tech-table-section {
-  padding: 3rem 0;
+  padding: 6rem 0 3rem;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 220, 130, 0.02));
 }
 
@@ -199,6 +349,10 @@ const technologiesByCategory = computed(() => ({
   gap: 1rem;
 }
 
+.tech-item-wrapper {
+  position: relative;
+}
+
 .tech-item {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -208,6 +362,7 @@ const technologiesByCategory = computed(() => ({
   background: rgba(255, 255, 255, 0.02);
   border-radius: 12px;
   transition: var(--transition);
+  position: relative;
 }
 
 .tech-item:hover {
@@ -219,6 +374,7 @@ const technologiesByCategory = computed(() => ({
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  flex: 1;
 }
 
 .tech-icon {
@@ -250,35 +406,129 @@ const technologiesByCategory = computed(() => ({
   color: var(--text-white);
 }
 
-.tech-badge-container {
+.tech-progress-container {
   display: flex;
   align-items: center;
+  gap: 1rem;
+  min-width: 200px;
 }
 
-.tech-status-badge {
-  padding: 0.6rem 1.25rem;
-  border-radius: 12px;
+.tech-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tech-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.6s ease, background 0.3s ease;
+  position: relative;
+}
+
+.tech-progress-fill.mastered {
+  background: linear-gradient(90deg, var(--primary-color), rgba(0, 220, 130, 0.8));
+  box-shadow: 0 0 10px rgba(0, 220, 130, 0.4);
+}
+
+.tech-progress-fill.in-progress {
+  background: linear-gradient(90deg, #ff9800, rgba(255, 152, 0, 0.8));
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.4);
+}
+
+.tech-progress-percentage {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--text-white);
+  min-width: 45px;
+  text-align: right;
   transition: var(--transition);
-  min-width: 100px;
-  text-align: center;
 }
 
-.tech-status-badge.mastered {
+.tech-item:hover .tech-progress-fill {
+  box-shadow: 0 0 15px rgba(0, 220, 130, 0.6);
+}
+
+.tech-item:hover .tech-progress-fill.in-progress {
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.6);
+}
+
+/* Zone déroulée desktop */
+.tech-item.clickable {
+  cursor: pointer;
+}
+
+.tech-expand-icon {
+  margin-left: auto;
+  color: var(--text-muted);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.tech-expand-icon.expanded {
+  transform: rotate(180deg);
+  color: var(--primary-color);
+}
+
+.tech-expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0;
+}
+
+.tech-expanded-content.expanded {
+  max-height: 300px;
+  padding: 1rem 0;
+}
+
+.tech-expanded-inner {
+  background: rgba(0, 220, 130, 0.05);
+  border: 1px solid rgba(0, 220, 130, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.tech-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.tech-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
   background: linear-gradient(135deg, rgba(0, 220, 130, 0.2), rgba(0, 220, 130, 0.1));
   color: var(--primary-color);
   border: 1px solid rgba(0, 220, 130, 0.3);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.tech-status-badge.in-progress {
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 152, 0, 0.1));
-  color: #ff9800;
-  border: 1px solid rgba(255, 152, 0, 0.3);
+.tech-github-link:hover {
+  background: linear-gradient(135deg, rgba(0, 220, 130, 0.3), rgba(0, 220, 130, 0.2));
+  border-color: rgba(0, 220, 130, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
 }
 
-.tech-item:hover .tech-status-badge {
-  transform: scale(1.05);
+.tech-github-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tech-content-mobile {
+  display: none;
 }
 
 @media (max-width: 1024px) {
@@ -297,9 +547,14 @@ const technologiesByCategory = computed(() => ({
     gap: 1rem;
   }
 
-  .tech-badge-container {
+  .tech-progress-container {
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .tech-expand-icon {
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
 
@@ -309,23 +564,261 @@ const technologiesByCategory = computed(() => ({
   }
 
   .tech-tabs {
-    padding: 1rem 1rem 0;
-    flex-wrap: wrap;
+    display: none;
   }
 
-  .tech-tab {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
-    gap: 0.5rem;
-  }
-
-  .tab-icon {
-    width: 18px;
-    height: 18px;
+  .tech-tabs-container {
+    border-radius: 20px;
+    padding: 0;
   }
 
   .tech-content {
-    padding: 1.5rem 1rem;
+    display: none;
+  }
+
+  .tech-content-mobile {
+    display: block;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, var(--surface-color), rgba(0, 0, 0, 0.3));
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .tech-content-mobile::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .tech-content-mobile::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .tech-content-mobile::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    opacity: 0.6;
+  }
+
+  .tech-content-mobile::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
+
+  .tech-scroll-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tech-category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tech-category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(0, 220, 130, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 220, 130, 0.2);
+  }
+
+  .category-icon {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    flex: 1;
+    margin: 0;
+  }
+
+  .category-count {
+    background: rgba(0, 220, 130, 0.2);
+    color: var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .tech-category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tech-item-mobile {
+    width: 100%;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tech-item-mobile:active {
+    background: rgba(0, 220, 130, 0.05);
+  }
+
+  .tech-info-mobile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tech-icon-mobile {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(0, 220, 130, 0.15), rgba(0, 220, 130, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 220, 130, 0.2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  .tech-name-mobile {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-white);
+    flex: 1;
+  }
+
+  .tech-item-mobile-wrapper {
+    position: relative;
+  }
+
+  .tech-item-mobile.clickable {
+    cursor: pointer;
+  }
+
+  .tech-expand-icon-mobile {
+    margin-left: auto;
+    color: var(--text-muted);
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+
+  .tech-expand-icon-mobile.expanded {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+  }
+
+  .tech-expanded-content-mobile {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .tech-expanded-content-mobile.expanded {
+    max-height: 300px;
+    padding: 1rem 0;
+  }
+
+  .tech-expanded-inner-mobile {
+    background: rgba(0, 220, 130, 0.05);
+    border: 1px solid rgba(0, 220, 130, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .tech-description-mobile {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+  }
+
+  .tech-github-link-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 220, 130, 0.2), rgba(0, 220, 130, 0.1));
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 220, 130, 0.3);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .tech-github-link-mobile:active {
+    background: linear-gradient(135deg, rgba(0, 220, 130, 0.3), rgba(0, 220, 130, 0.2));
+    border-color: rgba(0, 220, 130, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
+  }
+
+  .tech-github-link-mobile svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tech-progress-container-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tech-progress-bar-mobile {
+    flex: 1;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .tech-progress-fill-mobile {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.6s ease, background 0.3s ease;
+  }
+
+  .tech-progress-fill-mobile.mastered {
+    background: linear-gradient(90deg, var(--primary-color), rgba(0, 220, 130, 0.8));
+    box-shadow: 0 0 10px rgba(0, 220, 130, 0.4);
+  }
+
+  .tech-progress-fill-mobile.in-progress {
+    background: linear-gradient(90deg, #ff9800, rgba(255, 152, 0, 0.8));
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.4);
+  }
+
+  .tech-progress-percentage-mobile {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-white);
+    min-width: 45px;
+    text-align: right;
+  }
+}
+
+@media (min-width: 769px) {
+  .tech-content-mobile {
+    display: none;
   }
 }
 </style>
