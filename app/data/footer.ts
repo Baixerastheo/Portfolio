@@ -36,7 +36,7 @@ export const footerData: FooterData = {
     },
     {
       name: "LinkedIn", 
-      url: "https://linkedin.com",
+      url: "www.linkedin.com/in/theo-baixeras-198231382",
       icon: "linkedin"
     },
     {
@@ -46,7 +46,7 @@ export const footerData: FooterData = {
     },
     {
       name: "Email",
-      url: "mailto:contact@example.com",
+      url: "mailto:theo.baixeras@gmail.com",
       icon: "mail"
     }
   ],

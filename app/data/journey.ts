@@ -31,8 +31,8 @@ export const journeySteps: JourneyStep[] = [
     id: 3,
     title: "Pré-Msc Pro",
     institution: "Epitech",
-    period: "2024 - Présent",
-    description: "Alternance en tant que développeur full-stack, spécialisé en Vue.js et Nuxt. Développement d'applications web modernes et performantes.",
+    period: "2025 - Présent",
+    description: "Étudiant en préparation de Master en Informatique à Epitech.",
     status: 'in-progress',
     iconType: 'work'
   }

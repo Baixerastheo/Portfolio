@@ -11,37 +11,37 @@ export interface CarouselProject {
 export const carouselProjects: CarouselProject[] = [
     {
         id: 1,
-        title: "A completer",
-        description: "Une description qui décrit le projet en quelques mots.",
-        image: "/project1.jpg",
-        technologies: ["Nothing", "Nothing", "Nothing", "Nothing"],
+        title: "ByeWork",
+        description: "Plateforme de recherche d'emploi avec filtres dynamiques et recherche fluide",
+        image: "/byework.png",
+        technologies: ["React", "Vite", "Express", "Node.js"],
         link: "#",
-        github: "#"
+        github: "https://github.com/LucasGonz27/ByeWork.app"
     },
     {
         id: 2,
-        title: "A completer",
-        description: "Une description qui décrit le projet en quelques mots.",
-        image: "/project2.jpg",
-        technologies: ["Nothing", "Nothing", "Nothing", "Nothing"],
+        title: "Barcassone",
+        description: "Jeu vidéo de type tower defense en 2D développé en Java",
+        image: "",
+        technologies: ["Java", "Java 2D", "LibGDX"],
         link: "#",
-        github: "#"
+        github: "https://github.com/LucasGonz27/BarCassonne"
     },
     {
         id: 3,
-        title: "Portfolio Responsive",
-        description: "Site portfolio responsive avec animations CSS",
-        image: "/portfolio-resp.png",
-        technologies: ["Vue.Js", "Nuxt", "Typescript", "Javascript", "CSS3"],
-        link: "#",
-        github: "#"
+        title: "Digital Resume",
+        description: "CV numérique interactif développé en HTML, CSS et JavaScript",
+        image: "/digitalResume.png",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        link: "https://baixerastheo.github.io/baixeras-theo/index.html",
+        github: "https://github.com/Baixerastheo/baixeras-theo"
     },
     {
         id: 4,
-        title: "A completer",
-        description: "Une description qui décrit le projet en quelques mots.",
+        title: "J-Map",
+        description: "Tableau de bord interactif avec visualisation de données en temps réel",
         image: "/project4.jpg",
-        technologies: ["Nothing", "Nothing", "Nothing", "Nothing"],
+        technologies: ["Rust", "Tauri", "Svelte", "TailwindCSS"],
         link: "#",
         github: "#"
     }

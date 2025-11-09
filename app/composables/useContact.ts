@@ -9,9 +9,9 @@ export function useContact() {
   const sendEmail = async (data: ContactFormData): Promise<{ success: boolean; message: string }> => {
     try {
       // Configuration EmailJS
-      const serviceId = 'YOUR_SERVICE_ID'
-      const templateId = 'YOUR_TEMPLATE_ID'
-      const publicKey = 'YOUR_PUBLIC_KEY'
+      const serviceId = 'service_jpff00n'
+      const templateId = 'template_0dp0bv2'
+      const publicKey = 'ezNZ_M9_J-Qt-bLPi'
 
       const templateParams = {
         from_name: data.name,
@@ -22,7 +22,7 @@ export function useContact() {
       }
 
       // Envoi via EmailJS
-      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,6 +34,16 @@ export function useContact() {
           template_params: templateParams
         })
       })
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`)
+      }
+
+      const result = await response.json()
+      
+      if (result.status !== 200) {
+        throw new Error(result.text || 'Erreur lors de l\'envoi de l\'email')
+      }
 
       return {
         success: true,

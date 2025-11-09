@@ -22,7 +22,6 @@ const {
         <span>{{ headerData.name }}</span>
       </a>
       
-      <!-- Menu desktop -->
       <div class="header-nav-links">
         <a 
           v-for="link in headerData.navLinks" 
@@ -35,7 +34,6 @@ const {
         </a>
       </div>
 
-      <!-- Actions du header -->
       <div class="header-actions">
         <a 
           v-for="action in headerData.socialActions" 

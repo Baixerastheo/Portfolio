@@ -87,7 +87,7 @@ const {
             © {{ currentYear }} {{ footerData.name }}. Tous droits réservés.
           </p>
           <p class="footer-built-with">
-            Construit avec <span class="heart">❤️</span> et <span class="nuxt">Nuxt.js</span>
+            Fait avec <span class="heart">❤️</span> et <span class="nuxt">Nuxt.js</span>
           </p>
         </div>
       </div>

@@ -44,7 +44,7 @@ export const headerData: HeaderData = {
   socialActions: [
     {
       name: "Email",
-      url: "mailto:contact@example.com",
+      url: "mailto:theo.baixeras@gmail.com",
       icon: "email",
       title: "Contact"
     },
@@ -56,7 +56,7 @@ export const headerData: HeaderData = {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com",
+      url: "https://www.linkedin.com/in/theo-baixeras-198231382",
       icon: "linkedin",
       title: "LinkedIn"
     }

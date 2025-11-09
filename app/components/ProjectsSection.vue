@@ -55,7 +55,7 @@ import { getProjectImage } from '~/utils/helpers'
 
 <style>
 .projects-section {
-  padding: 3rem 0;
+  padding: 6rem 0 3rem;
   background: linear-gradient(180deg, rgba(0, 220, 130, 0.03), rgba(0, 0, 0, 0.3));
 }
 
