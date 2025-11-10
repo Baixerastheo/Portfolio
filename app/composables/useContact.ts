@@ -59,7 +59,20 @@ export function useContact() {
         throw new Error(`Erreur HTTP: ${response.status}`)
       }
 
-      const result = await response.json()
+      const responseText = await response.text()
+      
+      let result
+      try {
+        result = JSON.parse(responseText)
+      } catch {
+        if (responseText.trim() === 'OK' || responseText.trim() === '') {
+          return {
+            success: true,
+            message: 'Message envoyé avec succès !'
+          }
+        }
+        throw new Error(`Réponse inattendue de l'API: ${responseText}`)
+      }
       
       if (result.status !== 200) {
         throw new Error(result.text || 'Erreur lors de l\'envoi de l\'email')
