@@ -146,6 +146,31 @@ NUXT_PUBLIC_EMAILJS_PUBLIC_KEY=votre_public_key
 
 Le site sera déployé automatiquement à chaque push sur la branche principale.
 
+5. **🔧 Dépannage : Les pushs ne se déploient pas automatiquement**
+
+   Si vos pushs GitHub ne déclenchent pas de déploiement sur Vercel :
+   
+   - **Vérifier la connexion GitHub** :
+     - Allez dans Vercel → **Settings** → **Git**
+     - Vérifiez que votre repository GitHub est bien connecté
+     - Vérifiez que la branche surveillée est bien `main` (ou `master`)
+   
+   - **Vérifier les webhooks GitHub** :
+     - Allez dans votre repository GitHub → **Settings** → **Webhooks**
+     - Vérifiez qu'il y a un webhook Vercel actif
+     - Si le webhook est manquant, reconnectez le repository dans Vercel
+   
+   - **Redéployer manuellement** :
+     - Allez dans Vercel → **Deployments**
+     - Cliquez sur les **3 points** du dernier déploiement
+     - Cliquez sur **Redeploy**
+     - Ou créez un nouveau commit vide : `git commit --allow-empty -m "Trigger deployment"`
+   
+   - **Vérifier les logs de build** :
+     - Allez dans Vercel → **Deployments** → Cliquez sur un déploiement
+     - Vérifiez les logs pour voir s'il y a des erreurs de build
+     - Les erreurs de build empêchent le déploiement
+
 ### Autres plateformes
 
 Le projet peut être déployé sur :
