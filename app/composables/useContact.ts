@@ -15,9 +15,23 @@ export function useContact() {
       const templateId = config.public.emailjsTemplateId
       const publicKey = config.public.emailjsPublicKey
 
-      // Vérification que les variables sont configurées
+      // Debug: vérifier les variables (uniquement en développement)
+      if (import.meta.dev) {
+        console.log('EmailJS Config:', {
+          serviceId: serviceId ? '✓' : '✗',
+          templateId: templateId ? '✓' : '✗',
+          publicKey: publicKey ? '✓' : '✗'
+        })
+      }
+
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('Configuration EmailJS manquante. Veuillez configurer les variables d\'environnement.')
+        const missing = []
+        if (!serviceId) missing.push('NUXT_PUBLIC_EMAILJS_SERVICE_ID')
+        if (!templateId) missing.push('NUXT_PUBLIC_EMAILJS_TEMPLATE_ID')
+        if (!publicKey) missing.push('NUXT_PUBLIC_EMAILJS_PUBLIC_KEY')
+        
+        console.error('Variables d\'environnement manquantes:', missing)
+        throw new Error(`Configuration EmailJS manquante: ${missing.join(', ')}. Veuillez configurer les variables d'environnement dans Vercel.`)
       }
 
       const templateParams = {
