@@ -2,7 +2,7 @@
 
 Portfolio personnel moderne et responsive développé avec Nuxt 3 et Vue.js. Présentation de mes projets, compétences et parcours en tant que développeur junior.
 
-**Site en ligne** : [portfolio-theo-baixeras.vercel.app](https://portfolio-theo-baixeras.vercel.app)
+**Site en ligne** : [portfolio-theo-baixeras.vercel.app](https://portfolio-theo-baixeras-90.vercel.app/)
 
 ## Technologies utilisées
 
