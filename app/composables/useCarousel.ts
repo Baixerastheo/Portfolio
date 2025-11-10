@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 export function useCarousel(items: any[], autoPlayInterval: number = 3000) {
   const currentIndex = ref(0)
   const isAutoPlay = ref(true)
-  const autoPlayIntervalRef = ref<number | null>(null)
+  const autoPlayIntervalRef = ref<ReturnType<typeof setInterval> | null>(null)
 
   // Fonction pour passer au projet suivant
   const nextProject = () => {

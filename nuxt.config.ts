@@ -54,7 +54,11 @@ export default defineNuxtConfig({
       siteName: 'Baixeras Théo - Portfolio Développeur Junior',
       siteDescription: 'Portfolio de Baixeras Théo, développeur junior passionné par la création d\'expériences web innovantes et performantes.',
       author: 'Baixeras Théo',
-      language: 'fr'
+      language: 'fr',
+      // Configuration EmailJS
+      emailjsServiceId: process.env.NUXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+      emailjsTemplateId: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+      emailjsPublicKey: process.env.NUXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
     }
   },
 

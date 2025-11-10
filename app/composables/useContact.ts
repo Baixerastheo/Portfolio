@@ -6,19 +6,25 @@ export interface ContactFormData {
 }
 
 export function useContact() {
+  const config = useRuntimeConfig()
+  
   const sendEmail = async (data: ContactFormData): Promise<{ success: boolean; message: string }> => {
     try {
-      // Configuration EmailJS
-      const serviceId = 'service_jpff00n'
-      const templateId = 'template_0dp0bv2'
-      const publicKey = 'ezNZ_M9_J-Qt-bLPi'
+      // Configuration EmailJS depuis les variables d'environnement
+      const serviceId = config.public.emailjsServiceId
+      const templateId = config.public.emailjsTemplateId
+      const publicKey = config.public.emailjsPublicKey
+
+      // Vérification que les variables sont configurées
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Configuration EmailJS manquante. Veuillez configurer les variables d\'environnement.')
+      }
 
       const templateParams = {
         from_name: data.name,
         from_email: data.email,
         subject: data.subject,
-        message: data.message,
-        to_email: 'votre-email@example.com'
+        message: data.message
       }
 
       // Envoi via EmailJS

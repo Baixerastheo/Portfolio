@@ -111,10 +111,14 @@ Le formulaire de contact utilise EmailJS pour l'envoi d'emails. Pour le configur
 
 1. Créer un compte sur [EmailJS](https://www.emailjs.com/)
 2. Configurer un service email
-3. Créer un template
-4. Mettre à jour les clés dans `app/composables/useContact.ts`
+3. Créer un template (le champ `to_email` doit être configuré dans le template EmailJS)
+4. Créer un fichier `.env` à la racine du projet avec les variables suivantes :
 
-Pour plus de détails, consultez le fichier `CONTACT_SETUP.md`
+```env
+NUXT_PUBLIC_EMAILJS_SERVICE_ID=votre_service_id
+NUXT_PUBLIC_EMAILJS_TEMPLATE_ID=votre_template_id
+NUXT_PUBLIC_EMAILJS_PUBLIC_KEY=votre_public_key
+```
 
 ## Déploiement
 
@@ -126,6 +130,19 @@ Pour plus de détails, consultez le fichier `CONTACT_SETUP.md`
    - Build Command : `npm run build`
    - Output Directory : `.output/public`
    - Install Command : `npm install`
+
+4. **⚠️ IMPORTANT : Configurer les variables d'environnement**
+   
+   Pour que le formulaire de contact fonctionne, vous devez configurer les variables d'environnement dans Vercel :
+   
+   - Allez dans votre projet Vercel → **Settings** → **Environment Variables**
+   - Ajoutez les 3 variables suivantes :
+     - `NUXT_PUBLIC_EMAILJS_SERVICE_ID` = `service_jpff00n`
+     - `NUXT_PUBLIC_EMAILJS_TEMPLATE_ID` = `template_0dp0bv2`
+     - `NUXT_PUBLIC_EMAILJS_PUBLIC_KEY` = `ezNZ_M9_J-Qt-bLPi`
+   - Sélectionnez tous les environnements (Production, Preview, Development)
+   - Cliquez sur **Save**
+   - **Redéployez** votre application pour que les variables soient prises en compte
 
 Le site sera déployé automatiquement à chaque push sur la branche principale.
 
