@@ -61,16 +61,20 @@ export function useContact() {
 
       const responseText = await response.text()
       
+      // EmailJS peut retourner "OK" en texte brut (succès)
+      const trimmedText = responseText.trim()
+      if (trimmedText === 'OK' || trimmedText === '') {
+        return {
+          success: true,
+          message: 'Message envoyé avec succès !'
+        }
+      }
+      
+      // Essayer de parser en JSON
       let result
       try {
         result = JSON.parse(responseText)
-      } catch {
-        if (responseText.trim() === 'OK' || responseText.trim() === '') {
-          return {
-            success: true,
-            message: 'Message envoyé avec succès !'
-          }
-        }
+      } catch (parseError) {
         throw new Error(`Réponse inattendue de l'API: ${responseText}`)
       }
       
@@ -83,10 +87,12 @@ export function useContact() {
         message: 'Message envoyé avec succès !'
       }
     } catch (error) {
-      console.error('Erreur envoi email:', error)
+      if (error instanceof Error && !error.message.includes('OK')) {
+        console.error('Erreur envoi email:', error)
+      }
       return {
         success: false,
-        message: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.'
+        message: error instanceof Error ? error.message : 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.'
       }
     }
   }
