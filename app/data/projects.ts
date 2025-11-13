@@ -48,7 +48,7 @@ export const projects: Project[] = [
     id: 4,
     title: "Barcassone",
     description: "Jeu vidéo de type tower defense en 2D développé en Java. Défendez votre territoire en construisant des tours stratégiques pour repousser les vagues d'ennemis.",
-    image: null,
+    image: "/Barcassonne.png",
     technologies: ["Java", "Java 2D", "LibGDX"],
     category: "Desktop",
     status: "Terminé",

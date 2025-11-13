@@ -15,7 +15,6 @@ export function useContact() {
       const templateId = config.public.emailjsTemplateId
       const publicKey = config.public.emailjsPublicKey
 
-      // Debug: vérifier les variables (uniquement en développement)
       if (import.meta.dev) {
         console.log('EmailJS Config:', {
           serviceId: serviceId ? '✓' : '✗',
@@ -61,7 +60,7 @@ export function useContact() {
 
       const responseText = await response.text()
       
-      // EmailJS peut retourner "OK" en texte brut (succès)
+      // EmailJS peut retourner OK en texte brut (succès)
       const trimmedText = responseText.trim()
       if (trimmedText === 'OK' || trimmedText === '') {
         return {
