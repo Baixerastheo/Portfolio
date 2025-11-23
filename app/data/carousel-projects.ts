@@ -38,12 +38,12 @@ export const carouselProjects: CarouselProject[] = [
     },
     {
         id: 4,
-        title: "J-Map",
-        description: "Tableau de bord interactif avec visualisation de données en temps réel",
-        image: "/project4.jpg",
-        technologies: ["Rust", "Tauri", "Svelte", "TailwindCSS"],
-        link: "#",
-        github: "#"
+        title: "E-commerce",
+        description: "Application e-commerce complète avec tests e2e et tracking de données",
+        image: "/my-ecommerce.png",
+        technologies: ["Nuxt", "Express", "TypeScript", "Playwright"],
+        link: "",
+        github: "https://github.com/Baixerastheo/my-e-commerce"
     }
 ]
 

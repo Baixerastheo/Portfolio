@@ -332,6 +332,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-section {
+    padding-top: 70px;
+  }
+  
   .hero-content {
     grid-template-columns: 1fr;
     gap: 2rem;

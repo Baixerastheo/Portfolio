@@ -32,7 +32,7 @@ export const technologies: Technology[] = [
     mastered: true, 
     level: 70,
     githubLink: "https://github.com/Baixerastheo/portfolio",
-    description: "Utilisé pour améliorer la maintenabilité et la robustesse du code du portfolio."
+    description: "Utilisé pour la majorité de mes projets frontend."
   },
   { 
     name: "JavaScript", 
