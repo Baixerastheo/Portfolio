@@ -5,12 +5,12 @@ export const useTechnologies = () => {
   const activeTechTab = ref('Frontend')
   const expandedTechs = ref(new Set<string>())
 
-  const technologiesByCategory = computed(() => ({
-    Frontend: technologies.filter(t => t.category === 'Frontend'),
-    Backend: technologies.filter(t => t.category === 'Backend'),
-    Desktop: technologies.filter(t => t.category === 'Desktop'),
-    Tools: technologies.filter(t => t.category === 'Tools')
-  }))
+  const technologiesByCategory = computed(() => {
+    return techTabs.reduce<Record<string, typeof technologies>>((acc, tab) => {
+      acc[tab] = technologies.filter(t => t.category === tab)
+      return acc
+    }, {})
+  })
 
   const toggleTech = (tech: { name: string; githubLink?: string; description?: string }) => {
     if (tech.githubLink || tech.description) {
